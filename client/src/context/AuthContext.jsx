@@ -1,12 +1,12 @@
-import React from 'react';
-import axios from 'axios';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { AuthContext } from './auth';
-import { set } from 'react-hook-form';
+import React from "react";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+import { AuthContext } from "./auth";
+import { set } from "react-hook-form";
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(localStorage.getItem('user') || null);
+  const [user, setUser] = useState(localStorage.getItem("user") || null);
   // Separate loading states for different operations
   const [authLoading, setAuthLoading] = useState(true);
   const [transactionLoading, setTransactionLoading] = useState(false);
@@ -20,20 +20,20 @@ export const AuthProvider = ({ children }) => {
   const [balances, setBalances] = useState({ bank: 0, wallet: 0, total: 0 });
   const [summary, setSummary] = useState({ income: 0, expenses: 0 });
   // const [error, setError] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token') || null);
-  const API_BASE_URL = 'http://localhost:5002/api/v1';
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const API_BASE_URL = "http://localhost:5002/api/v1";
 
   useEffect(() => {
     if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     } else {
-      delete axios.defaults.headers.common['Authorization'];
+      delete axios.defaults.headers.common["Authorization"];
     }
   }, [token]);
 
   useEffect(() => {
     const checkAuth = async () => {
-      const storedUser = localStorage.getItem('user');
+      const storedUser = localStorage.getItem("user");
       if (token) {
         try {
           const response = await axios.get(`${API_BASE_URL}/auth/verify`);
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
             logout();
           }
         } catch (error) {
-          console.error('Error verifying token:', error);
+          console.error("Error verifying token:", error);
           logout();
         }
       }
@@ -61,16 +61,16 @@ export const AuthProvider = ({ children }) => {
       );
       if (response.data.success) {
         const { token, user } = response.data;
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
         // add user to localstorage
 
         setToken(token);
         return { success: true, message: response.data.message };
       }
     } catch (error) {
-      console.error('Error registering user:', error);
-      return { success: false, message: 'Registration failed' };
+      console.error("Error registering user:", error);
+      return { success: false, message: "Registration failed" };
     }
   };
   const login = async (userData) => {
@@ -78,25 +78,25 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.post(`${API_BASE_URL}/auth/login`, userData);
       if (response.data.success) {
         const { token, user } = response.data;
-        localStorage.setItem('token', token);
+        localStorage.setItem("token", token);
         setToken(token);
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));
         setUser(user);
         return { success: true, message: response.data.message };
       }
     } catch (error) {
       return {
         success: false,
-        message: error.response?.data?.message || 'Login Failed',
+        message: error.response?.data?.message || "Login Failed",
       };
     }
   };
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setToken(null);
     setUser(null);
-    delete axios.defaults.headers.common['Authorization'];
+    delete axios.defaults.headers.common["Authorization"];
   };
   const getTransactions = async () => {
     try {
@@ -112,8 +112,8 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       setTransactionLoading(false);
-      console.error('Error fetching transactions data:', error);
-      return { success: false, message: 'Failed to fetch transactions' };
+      console.error("Error fetching transactions data:", error);
+      return { success: false, message: "Failed to fetch transactions" };
     }
   };
 
@@ -134,8 +134,8 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       setTransactionLoading(false);
-      console.error('Error adding transaction:', error);
-      return { success: false, message: 'Failed to add transaction' };
+      console.error("Error adding transaction:", error);
+      return { success: false, message: "Failed to add transaction" };
     }
   };
   const deleteTransaction = async (transactionId) => {
@@ -153,14 +153,14 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       setTransactionLoading(false);
-      console.error('Error deleting transaction:', error);
-      return { success: false, message: 'Failed to delete transaction' };
+      console.error("Error deleting transaction:", error);
+      return { success: false, message: "Failed to delete transaction" };
     }
   };
   const updateTransaction = async (transactionData) => {
     try {
       setTransactionLoading(true);
-      console.log('Updating transaction:', transactionData);
+      console.log("Updating transaction:", transactionData);
       const response = await axios.put(
         `${API_BASE_URL}/users/transactions/update/${transactionData.id}`,
         transactionData
@@ -174,8 +174,8 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       setTransactionLoading(false);
-      console.error('Error updating transaction:', error);
-      return { success: false, message: 'Failed to update transaction' };
+      console.error("Error updating transaction:", error);
+      return { success: false, message: "Failed to update transaction" };
     }
   };
 
@@ -199,8 +199,8 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (err) {
       setBalanceLoading(false);
-      console.error('Error fetching balances:', err);
-      return { success: false, message: 'Failed to fetch balances' };
+      console.error("Error fetching balances:", err);
+      return { success: false, message: "Failed to fetch balances" };
     }
   };
   const getIncomeExpenseReport = async (monthsNumber) => {
@@ -226,11 +226,47 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (err) {
       setReportLoading(false);
-      console.error('Error fetching income expense report:', err);
-      return { success: false, message: 'Failed to fetch report' };
+      console.error("Error fetching income expense report:", err);
+      return { success: false, message: "Failed to fetch report" };
     }
   };
+  const getBalanceOverMonth = async (monthsNumber) => {
+    try {
+      setReportLoading(true);
+      const response = await axios.get(
+        `${API_BASE_URL}/users/reports/balances/${user.id}/${monthsNumber}`
+      );
+      if (response.status === 200) {
+        setReportLoading(false);
 
+        // Process data to separate balance for each month
+        const monthlyBalances = {};
+
+        if (response.data.balanceReport) {
+          Object.entries(response.data.balanceReport).forEach(
+            ([month, data]) => {
+              monthlyBalances[month] = {
+                bank: data.bank || 0,
+                wallet: data.wallet || 0,
+                total: (data.bank || 0) + (data.wallet || 0),
+              };
+            }
+          );
+        }
+
+        setBalanceRefresh((prev) => prev + 1);
+        return {
+          data: monthlyBalances,
+          success: true,
+          rawData: response.data,
+        };
+      }
+    } catch (err) {
+      setReportLoading(false);
+      console.error("Error fetching balance over month report:", err);
+      return { success: false, message: "Failed to fetch balance report" };
+    }
+  };
   const updateUserSettings = async (settingsData) => {
     try {
       setAuthLoading(true);
@@ -244,19 +280,19 @@ export const AuthProvider = ({ children }) => {
         if (settingsData.email || settingsData.currency) {
           const updatedUser = { ...user, ...settingsData };
           setUser(updatedUser);
-          localStorage.setItem('user', JSON.stringify(updatedUser));
+          localStorage.setItem("user", JSON.stringify(updatedUser));
         }
         return {
           success: true,
-          message: response.data.message || 'Settings updated successfully',
+          message: response.data.message || "Settings updated successfully",
         };
       }
     } catch (error) {
       setAuthLoading(false);
-      console.error('Error updating user settings:', error);
+      console.error("Error updating user settings:", error);
       return {
         success: false,
-        message: error.response?.data?.message || 'Failed to update settings',
+        message: error.response?.data?.message || "Failed to update settings",
       };
     }
   };
@@ -282,6 +318,7 @@ export const AuthProvider = ({ children }) => {
     deleteTransaction,
     updateTransaction,
     getIncomeExpenseReport,
+    getBalanceOverMonth,
     summary, // Summary data
   };
 

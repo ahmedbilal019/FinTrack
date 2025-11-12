@@ -8,11 +8,11 @@ function Features() {
       className="flex flex-col items-center justify-center pt-[90px] pb-[90px] "
       id="features"
     >
-      <h2 className="text-center text-3xl mb-[20px] font-semibold">Features</h2>
+      <h2 className="text-center text-3xl mb-5 font-semibold">Features</h2>
       <div className="flex items-center justify-center gap-10 m-[50px]   max-lg:flex-col max-lg:gap-15 ">
         <div
           className=" flex flex-1 flex-col  items-center justify-center text-center pl-[20px] pr-[20px] rounded-md shadow-xl/10 cursor-pointer transition duration-400 ease-in-out transform 
-                       hover:-translate-y-1 hover:scale-100 hover:inset-shadow-sm hover:shadow-xl/20  hover:bg-green-500 hover:text-white max-md:hover:bg-green-400 max-md:hover:text-white "
+                       hover:-translate-y-2 hover:scale-100 hover:inset-shadow-sm hover:shadow-xl/20  hover:bg-green-500 hover:text-white max-md:hover:bg-green-400 max-md:hover:text-white "
         >
           <div className="flex align-center justify-center">
             <PiChartPieSliceFill
@@ -32,7 +32,7 @@ function Features() {
         </div>
         <div
           className=" flex flex-1 flex-col  items-center justify-center text-center pl-[20px] pr-[20px] rounded-md shadow-xl/10 cursor-pointer transition duration-400 ease-in-out transform 
-                       hover:-translate-y-1 hover:scale-100 hover:inset-shadow-sm hover:shadow-xl/20  hover:bg-green-500 hover:text-white max-md:hover:bg-green-400 max-md:hover:text-white"
+                       hover:-translate-y-2 hover:scale-100 hover:inset-shadow-sm hover:shadow-xl/20  hover:bg-green-500 hover:text-white max-md:hover:bg-green-400 max-md:hover:text-white"
         >
           <div className="flex align-center justify-center ">
             <HiCurrencyDollar
@@ -55,7 +55,7 @@ function Features() {
         </div>
         <div
           className=" flex flex-1 flex-col  items-center justify-center text-center pl-[20px] pr-[20px] rounded-md shadow-xl/10 cursor-pointer transition duration-400 ease-in-out transform 
-                       hover:-translate-y-1 hover:scale-100 hover:inset-shadow-sm hover:shadow-xl/20 hover:bg-green-500 hover:text-white max-md:hover:bg-green-400 max-md:hover:text-white"
+                       hover:-translate-y-2 hover:scale-100 hover:inset-shadow-sm hover:shadow-xl/20 hover:bg-green-500 hover:text-white max-md:hover:bg-green-400 max-md:hover:text-white"
         >
           <div className="flex align-center justify-center">
             <IoTimer

@@ -2,26 +2,54 @@
   display: flex;
   flex-direction: row;
   gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.total {
-  font-size: large;
-  color: blue;
-}
-.total-balance,
+
 .bank-balance,
 .wallet-balance {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 10px;
   background-color: #ffffff;
-  padding: 20px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.wallet,
-.bank {
+
+.bank,
+.wallet {
+  font-size: 16px;
+}
+.total {
+  font-size: 20px;
+  font-weight: 600;
+}
+.total-balance {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 10px;
+  background-color: #ffffff;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.container {
+  border: 1px solid #d1fae5;
+  transition: all 0.3s ease;
+}
+.container:hover {
+  transform: translateY(-2px);
+  border-color: #a7f3d0;
 }
