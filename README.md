@@ -169,10 +169,16 @@ _This project was a deep dive into full-stack architecture. Key takeaways includ
 
 ## 📬 Contact
 
-**Mustafa Bhatti**  
+**Ghulam Mustafa Bhatti**  
 Full Stack Developer  
 [LinkedIn Profile](https://linkedin.com/in/mustafa-bhatti1)
 
 Email: gmbhatti42@gmail.com
+
+**Ahmed Bilal**  
+Full Stack Developer  
+[LinkedIn Profile](https://linkedin.com/in/ahmedbilal019)
+
+Email: ahmed258bilal@gmail.com
 
 ---
